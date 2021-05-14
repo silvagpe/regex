@@ -14,6 +14,7 @@ https://marketplace.visualstudio.com/items?itemName=chrmarti.regex
 ```
 g - global
 i - ignore case
+m - multi line
 ```
 
 >Sintaxe: 
