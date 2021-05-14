@@ -22,13 +22,13 @@ m - multi line
 
 ```js
 
-//Pocura pela letra C ou as letras ab
+//Pocura pela letra C ou as letras ab (apenas a primeira ocorrência)
 texto.match(/C|ab/)
 
-//Procura pela letra c ou ab ignorando se é maiúscula ou minúscula
+//Procura pela letra c ou ab ignorando se é maiúscula ou minúscula (apenas a primeira ocorrência)
 texto.match(/c|ab/i)
 
-//Procura em todo o texto todas as combinações para ab ou letra c ignorando o case
+//Procura em todo o texto todas as combinações para ab ou letra c ignorando o case (toda as ocorrências porque tem a flag g)
 texto.match(/ab|c/gi)
 ```
 
