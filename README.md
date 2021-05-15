@@ -112,3 +112,145 @@ console.log('	'.match(/\s/g))
 //Resultado quando é preenchido com tabulação
 [ '\t' ]
 ```
+
+### Exemplo de pesquisa de caracteres simples
+
+```js
+const texto = '1,2,3,4,5,6,a.b c!d?e'
+
+const regexVirgula = /,/
+
+//Faz um split dos valores pelo caracter vincula gerando um array como retorno
+console.log(texto.split(regexVirgula))
+
+//Result:
+[ '1', '2', '3', '4', '5', '6', 'a.b c!d?e' ]
+
+
+// Localiza a primeira ocorrência do caracter vingula, se usar a flag global, localiza todas as ocorrencias
+console.log(texto.match(regexVirgula))
+
+//Result:
+[ ',',
+  index: 1,
+  input: '1,2,3,4,5,6,a.b c!d?e',
+  groups: undefined ]
+
+
+//Consulta globalmente todas as vinculas que existem no texto e gera um array como resultado
+console.log(texto.match(/,/g))
+
+//Result:
+[ ',', ',', ',', ',', ',', ',' ]
+
+//Consulta se existe uma ocorrência com a letra A maiúscula
+console.log(texto.match(/A/g))
+
+//Result:
+null
+
+//Consulta todas as ocorrências com a letra A ignorado o case
+console.log(texto.match(/A/gi))
+
+//Result
+[ 'a' ]
+
+
+//Consulta todas as ocorrências com o número 2
+console.log(texto.match(/2/g))
+
+//Result:
+[ '2' ]
+
+
+//Consulta se existe uma ocorrência com as letras 'b c!d' e devolve o valor as seguintes informações
+console.log(texto.match(/b c!d/))
+
+//Result:
+[ 'b c!d',
+  index: 14,
+  input: '1,2,3,4,5,6,a.b c!d?e',
+  groups: undefined ]
+
+```
+
+
+## Meta caracteres
+
+<br>
+
+### Representantes 
+
+| Caracter      | Nome              |Explicação                         |
+| ------------- |-------------------|-----------------------------------|
+| .             | Ponto             | Um caractere qualquer             |
+| []            | Conjunto          | Conjunto de caracteres permitidos |
+| [^]           | Conjunto negado   | Conjunto de caracteres proíbidos  |
+| [^]           | Conjunto negado   | Conjunto de caracteres proíbidos  |
+
+
+<br>
+
+### Quantificadores
+
+
+| Caracter      | Nome              |Explicação                     |
+| --------------|-------------------|-------------------------------|
+| ?             | Opcional          | Zero ou um                    |
+| *             | Asterisco         | Zero ou mais                  |
+| +             | Mais              | Um ou mais                    |
+| {n, m}        | Chaves            | De n até m                    |
+
+<br>
+
+### Âncoras
+
+
+| Caracter      | Nome              |Explicação                         |
+| ------------- |-------------------|-----------------------------------|
+| ^             | Circunflexo       | Início de linha                   |
+| $             | Cifrão            | Fim de linha                      |
+| \b            | Borda             | Início ou fim de palavra          |
+
+<br>
+
+### Ouros Metacaracteres
+
+
+| Caracter      | Nome              |Explicação                         |
+| ------------- |-------------------|-----------------------------------|
+| \             | Escape            | Uso de metacaracteres como literal|
+| |             | Ou                | Operação "or"                     |
+| ( )           | Grupo             | Define um grupo                   |
+| \1 \9         | Retrovisor        | Resgata grupos já definidos       |
+
+<br>
+
+#### Exemplos
+
+```js
+//Exemplos de metacaracteres
+// . ? * + - ^ $ | [ ] { } ( ) \ :
+
+const texto = '1,2,3,4,5,6,a.b c!d?e'
+
+//Gera um array separando os valores em dois grupos, divididos pelo literal . (ponto)
+//Em outras palavras remove o ponto e gera um array com dois resultados
+const regexPonto = /\./g
+console.log(texto.split(regexPonto))
+
+//Result:
+[ '1,2,3,4,5,6,a', 'b c!d?e' ]
+
+
+//Exemplo usando o ESCAPE:
+//Gera um array removendo os caracteres especiais: ",", ".", "?", "!" e " " (espaço)
+//Nesse exemplo utiliza-se o | (pipe) como condição "ou".
+//Caracteres simples não precisan preceder com o caracter de escape "\" no exemplo abaixo os caracteres que precisam de escape são  "\." e "\?" porque são metacaracteres. Utilizando o escape a tornamos ele um caractere simples, literal.
+const regexSimbolos = /,|\.|\?|!| /g
+console.log(texto.split(regexSimbolos))
+
+//Result:
+[ '1', '2', '3', '4', '5', '6', 'a', 'b', 'c', 'd', 'e' ]
+
+```
