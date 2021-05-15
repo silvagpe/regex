@@ -22,6 +22,7 @@ https://regex101.com/
 ```
 g - global
 i - ignore case
+m - multi line
 ```
 
 >Sintaxe: 
@@ -29,19 +30,20 @@ i - ignore case
 
 ```js
 
-//Pocura pela letra C ou as letras ab
+//Pocura pela letra C ou as letras ab (apenas a primeira ocorrência)
 texto.match(/C|ab/)
 
-//Procura pela letra c ou ab ignorando se é maiúscula ou minúscula
+//Procura pela letra c ou ab ignorando se é maiúscula ou minúscula (apenas a primeira ocorrência)
 texto.match(/c|ab/i)
 
-//Procura em todo o texto todas as combinações para ab ou letra c ignorando o case
+//Procura em todo o texto todas as combinações para ab ou letra c ignorando o case (toda as ocorrências porque tem a flag g)
 texto.match(/ab|c/gi)
 ```
 
 ### Como executar regex em JS
 
 [exemplo](/Exemplos/exemplo1.js)
+
 ```js
 //Valors de pesquisa
 const texto = '0,1,2,3,4,5,6,7,8,9,a,b,c,d,e,f'
