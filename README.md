@@ -112,3 +112,62 @@ console.log('	'.match(/\s/g))
 //Resultado quando é preenchido com tabulação
 [ '\t' ]
 ```
+
+
+
+### Ponto é um caractere coringa
+
+Ele é um coringa apenas para uma única posição
+
+```js
+const texto = '1,2,3,4,5,6,7,8,9,0'
+
+
+//Localiza a combinação de 1 e 2 desde que tenha um caractere entre o número 1 e o número 2
+console.log(texto.match(/1.2/g))
+//["1,2"]
+
+//Não ten valores que fechem com a a expressão 1 qualquer coisa, qualquer coisa 2
+console.log(texto.match(/1..2/g))
+//null
+
+//Localiza porque a expressão é número 1, qualquer coisa, qualquer coisa, virgula. Nesse caso o QC1 = , e QC2 = 2
+//QC = qualquer coisa
+console.log(texto.match(/1..,/g))
+//["1,2,"]
+
+
+const notas = '8.3,7.1,8.8,10.0'
+
+// Procura 2 QC depois do outro
+console.log(notas.match(/8../g))
+// ["8.3", "8.8"]
+
+// Procura valor "ponto" valor ou no caso
+// QC "ponto" QC
+console.log(notas.match(/.\../g))
+//["8.3", "7.1", "8.8", "0.0"]
+```
+
+
+### Desafio 1
+
+Extrair quandos arquivos .mp3 existem na frase.
+
+```js
+const texto = 'lista de arquivos mp3: jazz.mp3,rock.mp3,podcast.mp3,blues.mp3'
+console.log(texto.match(/\.mp3/g))
+
+//[".mp3", ".mp3", ".mp3", ".mp3"]
+// 0: ".mp3"
+// 1: ".mp3"
+// 2: ".mp3"
+// 3: ".mp3"
+// length: 4
+
+// \w+ pega um ou mais valores litereis (letras ou números)
+console.log(texto.match(/\w+\.mp3/g))
+
+// ["jazz.mp3", "rock.mp3", "podcast.mp3", "blues.mp3"]
+```
+
